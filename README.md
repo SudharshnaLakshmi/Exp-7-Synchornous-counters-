@@ -1,10 +1,13 @@
 # Exp-6-Synchornous-counters - up counter and down counter 
-### AIM: To implement 4 bit up and down counters and validate  functionality.
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
-### THEORY 
+## AIM: 
+To implement 4 bit up and down counters and validate  functionality.
+### HARDWARE REQUIRED: 
+PC, Cyclone II , USB flasher
+## SOFTWARE REQUIRED:   
+Quartus prime
+## THEORY 
 
-## UP COUNTER 
+### UP COUNTER 
 The counter is a digital sequential circuit and here it is a 4 bit counter, which simply means it can count from 0 to 15 and vice versa based upon the direction of counting (up/down). 
 
 The counter (“count“) value will be evaluated at every positive (rising) edge of the clock (“clk“) cycle.
@@ -20,23 +23,17 @@ Binary count sequence, paying attention to patterns preceding the “toggling”
 Note that each bit in this four-bit sequence toggles when the bit before it (the bit having a lesser significance, or place-weight), toggles in a particular direction: from 1 to 0.
 
 
-
- 
- 
-
 Starting with four J-K flip-flops connected in such a way to always be in the “toggle” mode, we need to determine how to connect the clock inputs in such a way so that each succeeding bit toggles when the bit before it transitions from 1 to 0.
 
 The Q outputs of each flip-flop will serve as the respective binary bits of the final, four-bit count:
 
  
- 
-
 Four-bit “Up” Counter
 ![image](https://user-images.githubusercontent.com/36288975/169644758-b2f4339d-9532-40c5-af40-8f4f8c942e2c.png)
 
 
 
-## DOWN COUNTER 
+### DOWN COUNTER 
 
 As well as counting “up” from zero and increasing or incrementing to some preset value, it is sometimes necessary to count “down” from a predetermined value to zero allowing us to produce an output that activates when the zero count or some other pre-set value is reached.
 
@@ -45,44 +42,90 @@ This type of counter is normally referred to as a Down Counter, (CTD). In a bina
 
 
 4-bit Count Down Counter
-### Procedure
-/* write all the steps invloved */
+## Procedure
+### Step 1:
+Create a new file in quartus II. 
+### Step 2: 
+Module Declaration. Module should have the file name.
+### Step 3: 
+Use begin declaration to define the functionality of logic circuits.
+### Step 4: 
+Within begin use if and else statements.
+### Step 5: 
+At the end give endmodule.
+### Step 6:
+Run the program and choose RTL viewer to get RTL realization.
 
 
-
-### PROGRAM 
-/*
+## PROGRAM 
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: Sudharshna Lakshmi S
+RegisterNumber: 
 
+```
+UP_COUNTER:
 
+module ex06(input Clk,input reset,output[0:3]counter);
+reg[0:3] counter_up;
+always@(posedge Clk or posedge reset)
+begin
+if(reset)
+counter_up<=4'd0;
+else
+counter_up<=counter_up+4'd1;
+end
+assign counter=counter_up;
+endmodule
 
+```
+```
+DOWN_COUNTER:
 
+module ex06(input Clk,input reset,output[0:3]counter);
+reg[0:3] counter_down;
+always@(posedge Clk or posedge reset)
+begin
+if(reset)
+counter_down<=4'd0;
+else
+counter_down<=counter_down-4'd1;
+end
+assign counter=counter_down;
+endmodule
+```
 
+## RTL LOGIC  
+### UP_COUNTER
+![OUTPUT](./up.png)
 
-### RTL LOGIC UP COUNTER AND DOWN COUNTER  
+### DOWN COUNTER
+![OUTPUT](./down.png)
 
+## TIMING DIGRAMS FOR COUNTER  
 
+### UP_CONTER
 
+WHEN RESET IS HIGH
+![OUTPUT](./up%20high.png)
 
+WHEN RESET IS LOW
+![OUTPUT](./up%20low.png)
 
+### DOWN_COUNTER
 
+WHEN RESET IS HIGH
+![OUTPUT](./down%20high%20.png)
 
+WHEN RESET IS LOW
+![OUTPUT](./down%20low%20.png)
 
+## TRUTH TABLE 
 
-### TIMING DIGRAMS FOR COUNTER  
+### UP_COUNTER
+![OUTPUT](./upt.png)
 
+### DOWN_COUNTER
+![OUTPUT](./downt.png)
 
-
-
-
-### TRUTH TABLE 
-
-
-
-
-
-
-### RESULTS 
+## RESULT
+The 4 bit up and down counters has been implemented and validated the functionality.
